@@ -1,32 +1,32 @@
 import React from "react";
 
-function TheirMsg({ message, lastMessage }) {
+const TheirMsg= ({ message, lastMessage })=> {
     console.log(lastMessage);
-  const isFirstMessage =
-    !lastMessage ||
-    lastMessage.sender.username ===! message.sender.username;
+  const isFirstMessage = !lastMessage || lastMessage.sender.username !== message.sender.username;
 
   return (
-    <div>
-      {isFirstMessage ? (
+    <div className="message-row">
+      {isFirstMessage && (
         <div
           className="message-avatar"
-          style={{ backgroundImage: `url(${message?.sender?.avatar})`  , marginBottom:"14px"} }
+          style={{ backgroundImage: message.sender && `url(${message?.sender?.avatar})`} }
         />
-      ) : null}
-      {message?.attachements?.length > 0 ? (
+      )}
+      { message.attachements && message.attachements.length > 0 
+      ? (
         <img
           src={message.attachements[0].file}
           alt="message-attachment"
           className="message-image"
           style={{ marginLeft:isFirstMessage?"4px" :'48px' }}
         />
-      ) : (
+      ) 
+      : (
         <div
           className="message"
           style={{
             float: "left",
-            marginLeft:isFirstMessage?"4px" :'4px',
+            marginLeft:isFirstMessage?"4px" :'48px',
             backgroundColor: "#CABCDC",
           }}
         >

@@ -16,6 +16,7 @@ export function App() {
 		userSecret={localStorage.getItem('secret')}
 		projectID='22d4bae1-7b87-429d-9ce8-c98bc7100c44'
       renderChatFeed={(chatAppState) => <ChatFeed {...chatAppState} />}
+	  onNewMessage = {()=> new Audio('https://chat-engine-assets.s3.amazonaws.com/click.mp3').play()}
 		/>
 	);
 }

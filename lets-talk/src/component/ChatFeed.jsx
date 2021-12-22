@@ -2,27 +2,26 @@ import MessageForm from "./MessageForm";
 import Mymsg from "./Mymsg";
 import TheirMsg from "./TheirMsg";
 
-function ChatFeed(props) {
+const ChatFeed =(props)=>{
   const { chats, activeChat, userName, messages } = props; //destrucuturing
   // console.log(props);
   const chat = chats && chats[activeChat];
-  console.log("hello " , chat);
+  // console.log("hello " , chat);
    
 
-  const renderReciept = ( message , isMyMessage) => {
-
-
-    return chat.people.map((person , index) => person.last_read === message.id && (
-          <div 
-            key={`read_${index}`}
-            className="read-receipt"
-            style={{float : isMyMessage ? 'right':'left' , backgroundImage:`url(${person?.person?.avatar})` , marginRight: isMyMessage ?'-46px':'0px',marginLeft:isMyMessage?null:'-60px'}}
-          ></div>
-        ))
-  }
+  const renderReadReceipts = (message, isMyMessage) =>  chat.people.map((person, index) => person.last_read === message.id && (
+    <div
+      key={`read_${index}`}
+      className="read-receipt"
+      style={{
+        float: isMyMessage ? 'right' : 'left',
+        backgroundImage: person.person.avatar && `url(${person.person.avatar})`,
+      }}
+    />
+  ));
 
   const renderMessages = () => {
-    console.log(messages);
+    // console.log(messages);
     // console.log(Object);
     // console.log(userName);
   
@@ -48,33 +47,25 @@ function ChatFeed(props) {
           <div className="message-block">
             {isMyMessage ? <Mymsg message={message} /> : <TheirMsg message={message} lastMessage= {messages[lastMassagekey]} />}
           </div>
-          <div
-            className="read-receipts"
-            style={{
-              marginRight: isMyMessage ? "18px" : "0px",
-              marginLeft: isMyMessage ? "0px" : "68px",
-            }}
-          >
-            {renderReciept(message,isMyMessage) }
-        
+          <div className="read-receipts" style={{ marginRight: isMyMessage ? '18px' : '0px', marginLeft: isMyMessage ? '0px' : '68px' }}>
+            {renderReadReceipts(message, isMyMessage)}
           </div>
         </div>
       );
     });
   };
 
-   if(!chat) return "Loading...";
+   if(!chat) return <div/>;
   return (
     <div className="chat-feed">
       <div className="chat-title-container">
         <div className="chat-title">
-            {chat.title}
+            {chat?.title}</div>
             <div className="chat-subtitle">
                 {chat.people.map((person) => `${person.person.username} `)}
             </div>   
         </div>
         {renderMessages()}
-      </div>
       <div style={{height : '100px'}}/>
       <div className="message-form-container">
           <MessageForm {...props} chatId={activeChat}/>
