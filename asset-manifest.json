@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Tic-Talk/static/css/main.1e1a1848.css",
+    "main.js": "/Tic-Talk/static/js/main.0401f4ae.js",
+    "index.html": "/Tic-Talk/index.html",
+    "main.1e1a1848.css.map": "/Tic-Talk/static/css/main.1e1a1848.css.map",
+    "main.0401f4ae.js.map": "/Tic-Talk/static/js/main.0401f4ae.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1e1a1848.css",
+    "static/js/main.0401f4ae.js"
+  ]
+}
