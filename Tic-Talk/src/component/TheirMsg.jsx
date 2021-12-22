@@ -1,10 +1,15 @@
 import React from "react";
 
 const TheirMsg= ({ message, lastMessage })=> {
-    console.log(lastMessage);
+    // console.log(lastMessage);
   const isFirstMessage = !lastMessage || lastMessage.sender.username !== message.sender.username;
+  const sendTime = message.created.substring(0,19);
 
-  return (
+
+  return (<>
+
+        <div> {isFirstMessage && (<div> <span style={{ marginLeft:'40%', position:'relative'}}>{sendTime}</span></div> )}</div>
+    
     <div className="message-row">
       {isFirstMessage && (
         <div
@@ -27,13 +32,18 @@ const TheirMsg= ({ message, lastMessage })=> {
           style={{
             float: "left",
             marginLeft:isFirstMessage?"4px" :'48px',
+            marginBottom:'10px',
             backgroundColor: "#CABCDC",
           }}
         >
           {message.text}
+
         </div>
+        
       )}
     </div>
+    </>
+
   );
 }
 
