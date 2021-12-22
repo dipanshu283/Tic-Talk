@@ -8,12 +8,12 @@ import './App.css';
 
 export function App() {
 
-	if(!localStorage.getItem('username')) return <LoadingForm/>
+	// if(!localStorage.getItem('username')) return <LoadingForm/>
 	return (
 		<ChatEngine
 		height='100vh'
-		userName={localStorage.getItem('username')}
-		userSecret={localStorage.getItem('secret')}
+		userName="dipanshu"
+		userSecret="dipanshu28"
 		projectID='22d4bae1-7b87-429d-9ce8-c98bc7100c44'
       renderChatFeed={(chatAppState) => <ChatFeed {...chatAppState} />}
 	  onNewMessage = {()=> new Audio('https://chat-engine-assets.s3.amazonaws.com/click.mp3').play()}
